@@ -13,6 +13,9 @@ export class MainPage {
     get signInLink() {
         return this.page.locator('[data-testid="signin-link"]');
     }
+    get joinLink() {
+        return this.page.locator('[data-testid="signup-link"]');
+    }
     get accountFilledBtn() {
         return this.page.locator('[type="accountFilled"]');
     }
@@ -40,6 +43,10 @@ export class MainPage {
 
     async clickSignInLink() {
         await this.signInLink.click();
+    }
+
+    async clickJoinLink() {
+        await this.joinLink.click();
     }
 
     async clickSearchField() {

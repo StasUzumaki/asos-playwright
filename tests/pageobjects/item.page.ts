@@ -18,7 +18,7 @@ export class ItemPage {
     }
 
     async selectSizeValue() {
-        await this.sizeSelect?.selectOption({ label: "EU 38" });
+        await this.sizeSelect?.selectOption({ label: "EU 46" });
     }
     async clickAddToBagBtn() {
         return this.addToBagBtn.click();
