@@ -2,9 +2,16 @@ import { uniqueNamesGenerator, Config, adjectives, colors, animals, countries, l
 import { BagPage } from "../tests/pageobjects/bag.page";
 import { SignUpPage } from "../tests/pageobjects/signUp.page";
 
-let signUp: SignUpPage;
+const randomNumber = Math.floor(Math.random() * 1000);
+const mainEmail = 'stastestasos';
+const tempGoogleMail = mainEmail + "+" + randomNumber + "@gmail.com";
 
 export class Helper {
+    signUp: SignUpPage;
+    constructor(signUp: SignUpPage) {
+        this.signUp = signUp;
+    }
+
     async randomName() {
         const randomName = uniqueNamesGenerator({
             dictionaries: [adjectives, animals, colors, countries, languages, names, starWars],
@@ -13,10 +20,12 @@ export class Helper {
         return randomName;
     }
 
-    async createAccount(firstName: string) {
-        await signUp.fillEmailField(firstName);
-        // await signUp.fillFirstName(await this.randomName());
-        // await signUp.fillLastName(await this.randomName());
-        // await signUp.fillPasswordValue(await this.randomName());
+    async createAccount() {
+        const name = await this.randomName();
+        const password = name + randomNumber;
+        await this.signUp.fillEmailField(tempGoogleMail);
+        await this.signUp.fillFirstName(name);
+        await this.signUp.fillLastName(name);
+        await this.signUp.fillPasswordValue(password);
     }
 }
